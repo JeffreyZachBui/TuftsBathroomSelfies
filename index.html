@@ -1,0 +1,32 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tufts Bathoom Selfies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+
+        <h1>TUFTS BATHROOM SELFIES</h1>
+
+        <div id="googleMap" style="width:80%;height:80%"></div>
+        
+        <script>
+        function myMap() {
+        var mapProp= {
+            center:new google.maps.LatLng(42.4068137,-71.122361,16.32),
+            zoom:15,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        }
+        </script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk-E0omLaanY3Fco4oDBqQlWeZ02Y3wjc&callback=myMap"></script>
+      
+        
+</body>
+</html>
+
