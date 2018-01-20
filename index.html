@@ -5,14 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Tufts Bathoom Selfies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Mini.css CDN -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v2.3.7/dist/mini-default.min.css">
+
+    <!-- Main stylesheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
 </head>
 <body>
 
-        <h1>TUFTS BATHROOM SELFIES</h1>
+        <header class="sticky row">
+          <div class="col-sm-12 col-md-10 col-md-offset-1">
+          <a href="#" class="logo">TUFTS BATHROOM SELFIES</a>
+          <a href="#" class="button">Home</a>
+          <a href="#" class="button">My Profile</a>
+          </div>
+        </header>
+        <div class="row">
+          <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <h3>TUFTS BATHROOM SELFIES</h3>
+            <div id="googleMap" style="width:80%;height:80%"></div>
+          </div>
+        </div>
+        <footer class="row">
+          <div class="col-sm-12 col-md-10 col-md-offset-1">
+            Copyright &copy; Sheehan & Bui Partners LLC. 2018
+          </div>
+        </footer>
 
-        <div id="googleMap" style="width:80%;height:80%"></div>
+        
         
         <script>
         function myMap() {
