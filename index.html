@@ -12,9 +12,21 @@
     <!-- Main stylesheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
+          
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk-E0omLaanY3Fco4oDBqQlWeZ02Y3wjc&callback=myMap">
+
+                function myMap() {
+                var mapProp= {
+                    center:new google.maps.LatLng(42.4068137,-71.122361,16.32),
+                    zoom:15,
+                };
+                var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                }
+    </script>
+    
+    
 </head>
 <body>
-
         <header class="sticky row">
           <div class="col-sm-12 col-md-10 col-md-offset-1">
           <a href="#" class="logo">TUFTS BATHROOM SELFIES</a>
@@ -27,12 +39,21 @@
             <h3>TUFTS BATHROOM SELFIES</h3>
           </div>
         </div>
+        
+        
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+        <script>
+            function myMap() {
+            var mapProp= {
+                center:new google.maps.LatLng(42.4068137,-71.12236),
+                zoom:15,
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk-E0omLaanY3Fco4oDBqQlWeZ02Y3wjc&callback=myMap"></script>
 
-        <div class="row">
-            <div class="col-sm-12 col-md-10 col-md-offset-1">
-                <div id="googleMap" style="width:80%;height:80%"></div>
-            </div>
-        </div>
+
 
         <footer class="row">
           <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -41,18 +62,10 @@
         </footer>
 
         
-        
-        <script>
-        function myMap() {
-        var mapProp= {
-            center:new google.maps.LatLng(42.4068137,-71.122361,16.32),
-            zoom:15,
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        }
-        </script>
-        
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk-E0omLaanY3Fco4oDBqQlWeZ02Y3wjc&callback=myMap"></script>
+               
+
+                
+ 
       
         
 </body>
