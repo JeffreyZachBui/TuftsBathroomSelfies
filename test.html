@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+
+  <div id="map"></div>
+      <script>
+        function initMap () {
+            var tuftsMap = {lat: 42.4068137,lng: -71.12236};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: tuftsMap,
+                zoom: 15                
+            });
+
+          infoWindow = new google.maps.InfoWindow;
+
+          // Try HTML5 geolocation.
+          if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+          };
+
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('You are here.');
+          infoWindow.open(map);
+          map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+          } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+        
+      
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+          infoWindow.open(map);
+        }
+
+            // Bathroom Variables
+            var tischBathrooms = {
+              info: '<strong> Tisch Bathrooms </strong><br>\
+              <a href = "https://google.com">Look at selfies </a>',
+              lat: 42.406460,
+              long: -71.118914,
+
+            };
+
+            var barnumBathrooms = {
+              info: '<strong> Barnum Bathrooms </strong><br>\
+              <a href = "https://google.com">Look at selfies </a>',
+              lat: 42.407838,
+              long: -71.120948,
+            };
+
+            var ccBathrooms = {
+              info: '<strong> Campus Center Bathrooms </strong><br>\
+              <a href = "https://google.com">Look at selfies </a>',
+              lat: 42.405603,
+              long: -71.120052,
+            };
+
+            // Dining hall bathrooms
+            var dewickBathrooms = {
+              info: '<strong> Dewick Bathrooms </strong><br>\
+              <a href = "https://google.com">Look at selfies </a>',
+              lat: 42.405231,
+              long:  -71.121359,
+            };
+
+            // Dorm Bathrooms
+
+            var lewisBathrooms = {
+              info: '<strong> Lewis Hall Bathrooms </strong><br>\
+              <a href = "https://google.com">Look at selfies </a>',
+              lat: 42.404956,
+              long:  -71.122771,
+            };
+
+            
+            // Locations
+            var locations = [
+            [tischBathrooms.info, tischBathrooms.lat, tischBathrooms.long,  0],
+            [barnumBathrooms.info, barnumBathrooms.lat, barnumBathrooms.long, 1],
+            [ccBathrooms.info, ccBathrooms.lat, ccBathrooms.long, 2],
+            [dewickBathrooms.info, dewickBathrooms.lat, dewickBathrooms.long, 3],
+            [lewisBathrooms.info, lewisBathrooms.lat, lewisBathrooms.long, 4]
+            ];
+
+            var infowindow = new google.maps.InfoWindow({});
+
+            // Markers
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+              marker = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+                icon: 'toilet.png',
+                animation: google.maps.Animation.BOUNCE,
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+              return function () {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+                }
+              })(marker, i));
+            }
+          // End of initmap function
+          }
+
+          // Find closet bathroom function
+          function find_closest_marker( lat1, lon1 ) {    
+            var pi = Math.PI;
+            var R = 6371; //equatorial radius
+            var distances = [];
+            var closest = -1;
+
+            for( i=0;i<markers.length; i++ ) {  
+            var lat2 = markers[i].position.lat();
+            var lon2 = markers[i].position.lng();
+
+            var chLat = lat2-lat1;
+            var chLon = lon2-lon1;
+
+            var dLat = chLat*(pi/180);
+            var dLon = chLon*(pi/180);
+
+            var rLat1 = lat1*(pi/180);
+            var rLat2 = lat2*(pi/180);
+
+            var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(rLat1) * Math.cos(rLat2); 
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            var d = R * c;
+
+            distances[i] = d;
+            if ( closest == -1 || d < distances[closest] ) {
+            closest = i;
+            }
+            }
+
+    // (debug) The closest marker is:
+    console.log(markers[closest]);
+}
+        
+    </script>
+        <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk-E0omLaanY3Fco4oDBqQlWeZ02Y3wjc&callback=initMap">
+        </script>
+</body>
+</html>
